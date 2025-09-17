@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _asyncMethod() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 4));
     if (mounted) {
       Navigator.pushReplacement(
         context,
@@ -37,17 +37,17 @@ class _SplashScreenState extends State<SplashScreen> {
         width: double.infinity,
         decoration: BoxDecoration(gradient: AppColors.blue),
         child: Column(
-          spacing: 11,
+          // spacing: 11,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AssetHelper.cloud, ),
+            Image.asset(AssetHelper.cloud,),
             Text(
               "Cloudy",
               style: AppTextStyles.bold34.copyWith(color: AppColors.clearWhite),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 10),
             Text(
-              "Dont worry about \nthe weather we all here",
+              "     Dont worry about \nthe weather we all here",
               style: AppTextStyles.regular16.copyWith(
                 color: AppColors.clearWhite,
               ),

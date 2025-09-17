@@ -7,6 +7,8 @@ abstract class AppColors {
   );
   static const Color page = Color(0XFFE5E5E5);
   static const Gradient blue = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
     colors: [Color(0XFF3C6FD1), Color(0XFF3C6FD1), Color(0XFF7CA9FF)],
   );
   static const Gradient darkBlue = LinearGradient(
