@@ -14,7 +14,7 @@ class DailyForcastWeather {
     required this.icon,
   });
 
-  Map<String, List<HourlyForcastWeather>> groupByDay(
+ static Map<String, List<HourlyForcastWeather>> groupByDay(
     List<HourlyForcastWeather> hourlyData,
   ) {
     final Map<String, List<HourlyForcastWeather>> grouped = {};
@@ -29,8 +29,8 @@ class DailyForcastWeather {
     return grouped;
   }
 
-  List<DailyForcastWeather> getDailyForcast(
-    List<HourlyForcastWeather> hourlyData,
+static  List<DailyForcastWeather> getDailyForcast(
+   {required List<HourlyForcastWeather> hourlyData,}
   ) {
     final grouped = groupByDay(hourlyData);
     final List<DailyForcastWeather> daily = [];

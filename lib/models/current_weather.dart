@@ -1,5 +1,5 @@
 class CurrentWeather {
-  final String cityName;
+   String cityName;
   final double temperature;
   final String description;
   final String icon;

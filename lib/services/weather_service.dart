@@ -40,14 +40,7 @@ class WeatherService {
         .toList();
   }
 
-  Future<CurrentWeather?> getWeatherByCity(String cityName) async {
-    final city = await getCityModel(cityName);
-    if (city == null) {
-      return null;
-    }
-
-    return await getCurrentWeather(city.lat, city.lon);
-  }
+  
 
   Future<CityModel?> getCityModel(String cityName) async {
     final Response response = await dio.get(
