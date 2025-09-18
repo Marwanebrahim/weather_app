@@ -23,20 +23,20 @@ class CurrentWeather {
     required this.sunset,
   });
 
-  factory CurrentWeather.fromJson(Map<String, dynamic> json) {
+  factory CurrentWeather.fromMap(Map<String, dynamic> map) {
     return CurrentWeather(
-      cityName: json["name"],
-      temperature: (json["main"]["temp"] as num).toDouble(),
-      description: json["weather"][0]["description"],
-      icon: json["weather"][0]["icon"],
-      feelsLike: (json["main"]["feels_like"] as num).toDouble(),
-      humidity: json["main"]["humidity"],
-      windSpeed: (json["wind"]["speed"] as num).toDouble(),
-      pressure: json["main"]["pressure"],
+      cityName: map["name"],
+      temperature: (map["main"]["temp"] as num).toDouble(),
+      description: map["weather"][0]["description"],
+      icon: map["weather"][0]["icon"],
+      feelsLike: (map["main"]["feels_like"] as num).toDouble(),
+      humidity: map["main"]["humidity"],
+      windSpeed: (map["wind"]["speed"] as num).toDouble(),
+      pressure: map["main"]["pressure"],
       sunrise: DateTime.fromMillisecondsSinceEpoch(
-        json["sys"]["sunrise"] * 1000,
+        map["sys"]["sunrise"] * 1000,
       ),
-      sunset: DateTime.fromMillisecondsSinceEpoch(json["sys"]["sunset"] * 1000),
+      sunset: DateTime.fromMillisecondsSinceEpoch(map["sys"]["sunset"] * 1000),
     );
   }
 }
