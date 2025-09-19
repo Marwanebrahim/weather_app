@@ -16,4 +16,5 @@ abstract class AppColors {
   );
   static const Color secondDark = Color(0XFFA098AE);
   static const Color dark = Color(0XFF363B64);
+  static const Color black =Colors.black;
 }

@@ -32,7 +32,7 @@ class WeatherCubit extends Cubit<WeatherState> {
       }
 
       final current = await weatherService.getCurrentWeather(lat, lon);
-      current.cityName="My Location";
+
       final hourly = await weatherService.getHourlyForcast(lat, lon);
       final daily = DailyForcastWeather.getDailyForcast(hourlyData: hourly);
       emit(
@@ -40,6 +40,9 @@ class WeatherCubit extends Cubit<WeatherState> {
           currentWeather: current,
           hourlyForcastWeather: hourly,
           dailyForcastWeather: daily,
+          cityName: cityName == null
+              ? "My Location"
+              : " ${current.cityName},${current.country}",
         ),
       );
     } catch (e) {
