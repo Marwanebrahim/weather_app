@@ -5,6 +5,7 @@ import 'package:weather_app/models/hourly_forcast_weather.dart';
 import 'package:weather_app/styles/app_colors.dart';
 import 'package:weather_app/styles/app_text_style.dart';
 import 'package:weather_app/widgets/current_weather_widget.dart';
+import 'package:weather_app/widgets/daily_farcast_widget.dart';
 import 'package:weather_app/widgets/hourly_forcast_widget.dart';
 
 class WeatherListViev extends StatelessWidget {
@@ -34,6 +35,8 @@ class WeatherListViev extends StatelessWidget {
           date: currentWeather.dateTime,
           description: currentWeather.description,
         ),
+        SizedBox(height: 30),
+        DailyFarcastWidget(daily: daily),
       ],
     );
   }
