@@ -28,7 +28,7 @@ class CurrentWeatherWidget extends StatelessWidget {
                   style: AppTextStyles.bold24.copyWith(
                     color: AppColors.clearWhite,
                   ),
-                ),
+                ),Spacer(),
                 Image.network(
                   "https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png",
                   width: 78,
