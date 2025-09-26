@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubit/weather_cubit.dart';
 import 'package:weather_app/cubit/weather_state.dart';
+import 'package:weather_app/screens/search_screen.dart';
 import 'package:weather_app/styles/app_colors.dart';
 import 'package:weather_app/styles/app_text_style.dart';
 import 'package:weather_app/widgets/weather_list_viev.dart';
@@ -30,6 +31,32 @@ class HomeScreen extends StatelessWidget {
             );
           },
         ),
+        actions: [
+          BlocBuilder<WeatherCubit, WeatherState>(
+            builder: (context, state) {
+              if (state is SuccessState) {
+                return IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => BlocProvider.value(
+                          value: context.read<WeatherCubit>()..getWeather(null),
+                          child: SearchScreen(
+                            currentWeather: state.currentWeather,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.search, color: AppColors.dark),
+                );
+              }
+
+              return Icon(Icons.search, color: AppColors.dark);
+            },
+          ),
+        ],
       ),
 
       body: BlocBuilder<WeatherCubit, WeatherState>(
@@ -39,9 +66,11 @@ class HomeScreen extends StatelessWidget {
           }
           if (state is FailedState) {
             return Center(
-              child: Text(
-                "Please Check the connection of the internet or make the position service on",
-                style: AppTextStyles.medium16.copyWith(color: AppColors.dark),
+              child: Center(
+                child: Text(
+                  "Please Check the connection of the internet or make the position service on and restart the application",
+                  style: AppTextStyles.medium16.copyWith(color: AppColors.dark),
+                ),
               ),
             );
           }
