@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
           builder: (context) => BlocProvider(
             create: (context) =>
                 WeatherCubit(weatherService: WeatherService(dio: Dio()))
-                  ..getWeather(null),
+                  ..getWeather(),
             child: HomeScreen(),
           ),
         ),

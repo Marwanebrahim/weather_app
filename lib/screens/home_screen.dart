@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (_) => BlocProvider.value(
-                          value: context.read<WeatherCubit>()..getWeather(null),
+                          value: context.read<WeatherCubit>()..getWeather(),
                           child: SearchScreen(
                             currentWeather: state.currentWeather,
                           ),

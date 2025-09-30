@@ -11,27 +11,26 @@ class WeatherCubit extends Cubit<WeatherState> {
   final LocationService locationService = LocationService();
   WeatherCubit({required this.weatherService}) : super(IntialState());
 
-  void getWeather(String? cityName) async {
-    late double lon;
-    late double lat;
-
+  void getWeather({String? cityName, double? lon, double? lat}) async {
     emit(LoadingState());
     try {
-      if (cityName == null) {
-        final position = await getLocation();
-        lon = position.longitude;
-        lat = position.latitude;
-      } else {
-        CityModel? city = await weatherService.getCityModel(cityName);
-        if (city != null) {
-          lon = city.lon;
-          lat = city.lat;
+      if (lat == null || lon == null) {
+        if (cityName == null) {
+          final position = await getLocation();
+          lon = position.longitude;
+          lat = position.latitude;
         } else {
-          emit(FailedState());
+          CityModel? city = await weatherService.getCityModel(cityName);
+          if (city != null) {
+            lon = city.lon;
+            lat = city.lat;
+          } else {
+            emit(FailedState());
+          }
         }
       }
 
-      final current = await weatherService.getCurrentWeather(lat, lon);
+      final current = await weatherService.getCurrentWeather(lat!, lon!);
 
       final hourly = await weatherService.getHourlyForcast(lat, lon);
       final daily = DailyForcastWeather.getDailyForcast(hourlyData: hourly);
