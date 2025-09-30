@@ -27,19 +27,19 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
       backgroundColor: AppColors.page,
-      body: BlocBuilder<WeatherCubit, WeatherState>(
-        builder: (BuildContext context, state) {
-          if (state is LoadingState) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (state is SuccessState) {
-            return GoogleMapWidget(currentWeather: state.currentWeather);
-          }
-          if(state is FailedState){
-            return Text("data");
-          }
-          return Text("data");
-        },
+      body: BlocProvider.value(
+        value: context.read<WeatherCubit>()..getWeather(),
+        child: BlocBuilder<WeatherCubit, WeatherState>(
+          builder: (BuildContext context, WeatherState state) {
+            if (state is LoadingState) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (state is SuccessState) {
+              return GoogleMapWidget(currentWeather: state.currentWeather);
+            }
+            return Text("");
+          },
+        ),
       ),
     );
   }

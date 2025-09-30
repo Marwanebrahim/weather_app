@@ -6,7 +6,7 @@ import 'package:weather_app/widgets/search_text_field.dart';
 import 'package:weather_app/widgets/show_map_widget.dart';
 
 class GoogleMapWidget extends StatefulWidget {
-  const GoogleMapWidget({super.key,required this.currentWeather});
+  const GoogleMapWidget({super.key, required this.currentWeather});
   final CurrentWeather? currentWeather;
 
   @override
@@ -17,6 +17,12 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
   TextEditingController searchController = TextEditingController();
 
   @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 5,
@@ -24,10 +30,19 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
         SearchTextField(
           searchController: searchController,
           onPressed: () {
-            context.read<WeatherCubit>().getWeather(searchController.text);
+            if (searchController.text.isNotEmpty) {
+              context.read<WeatherCubit>().getWeather(
+                cityName: searchController.text,
+              );
+            }
           },
         ),
-        Expanded(child: ShowMapWidget(currentWeather: widget.currentWeather!)),
+        Expanded(
+          child: ShowMapWidget(
+            currentWeather: widget.currentWeather!,
+            cityName: searchController.text,
+          ),
+        ),
       ],
     );
   }

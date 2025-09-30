@@ -49,7 +49,7 @@ class CurrentWeather {
       icon: map["weather"][0]["icon"],
       dateTime: DateTime.fromMillisecondsSinceEpoch(map["dt"] * 1000),
       lat: map["coord"]["lat"],
-      lon: map["coord"]["lat"],
+      lon: map["coord"]["lon"],
     );
   }
 }
